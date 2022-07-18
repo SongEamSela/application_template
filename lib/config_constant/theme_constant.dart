@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class ThemeConstant {
   static ThemeData get light {
     return ThemeData(
-        // appBarTheme: appBarTheme(),
-        );
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Color(0xFF2c5918),
+      ),
+    );
   }
 
   static AppBarTheme appBarTheme() {
