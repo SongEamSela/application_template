@@ -68,5 +68,13 @@
 		<false/>
 		<key>NSFaceIDUsageDescription</key>
 		<string>my app authenticating using face id for login</string>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true/>
+		<key>NSCameraUsageDescription</key>
+		<string>Need camera for face detection</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Need photo for face detection</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>your usage description here</string>
 	</dict>
 </plist>

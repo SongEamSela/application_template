@@ -10,13 +10,19 @@ import 'package:application_template/shared_widgets/unknow_platform.dart';
 import 'package:application_template/web_platform/web_main.dart';
 import 'package:application_template/window_platform/window_main.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
+import 'screen/face_detection/main_page.dart';
+
+List<CameraDescription> cameras = [];
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   await Firebase.initializeApp(
       // options: const FirebaseOptions(
       //     apiKey: 'AIzaSyAmoV2lseD4f8ErZwVHMa_nuZqMSAKqStc',
@@ -36,10 +42,11 @@ class MyApp extends StatelessWidget {
     final botToastBuilder = BotToastInit();
     return MaterialApp(
       title: 'Flutter Demo',
+
       //theme
       themeMode: ThemeMode.light,
       theme: ThemeConstant.light,
-      home: botToastBuilder(context, InitialScreen()),
+      home: botToastBuilder(context, MainPage()),
       navigatorObservers: [
         BotToastNavigatorObserver(),
       ],

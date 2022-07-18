@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
 
 class LocalAuthNotifier extends ChangeNotifier {
-  localAuth() async {
+  Future<bool> localAuth() async {
     final LocalAuthentication auth = LocalAuthentication();
     bool canCheckBiometrics = false;
     try {
@@ -14,7 +14,6 @@ class LocalAuthNotifier extends ChangeNotifier {
 
     print("biometric is available: $canCheckBiometrics");
 
-//
     List<BiometricType> availableBiometrics = [];
     try {
       availableBiometrics = await auth.getAvailableBiometrics();
@@ -24,9 +23,9 @@ class LocalAuthNotifier extends ChangeNotifier {
 
     print("following biometrics are available");
     if (availableBiometrics.isNotEmpty) {
-      availableBiometrics.forEach((ab) {
+      for (var ab in availableBiometrics) {
         print("Avalible Biomatrics: $ab");
-      });
+      }
     } else {
       print("no biometrics are available");
     }
@@ -51,6 +50,7 @@ class LocalAuthNotifier extends ChangeNotifier {
       print("error using biometric auth: $e");
     }
     print("authenticated: $authenticated");
+    return authenticated;
   }
 }
 

@@ -15,7 +15,7 @@ class LoginPage extends HookConsumerWidget with Toast {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _socialSignIn = ref.watch(socialAuthProvider);
-    final _localAuth = ref.watch(LocalAuthProvider);
+    // final _localAuth = ref.watch(LocalAuthProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -58,7 +58,7 @@ class LoginPage extends HookConsumerWidget with Toast {
               children: [
                 Expanded(
                   child: MaterialButton(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).colorScheme.primary,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     onPressed: () {
                       Navigator.pushNamed(
@@ -82,7 +82,7 @@ class LoginPage extends HookConsumerWidget with Toast {
                 const SizedBox(width: 20),
                 Expanded(
                   child: MaterialButton(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).colorScheme.primary,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     onPressed: () {
                       Navigator.pushNamed(
@@ -150,11 +150,11 @@ class LoginPage extends HookConsumerWidget with Toast {
                     },
                   ),
                   _buidAppleIcon(onTap: () {}),
-                  _buildFaceIdAuth(onTap: () async {
-                    showLoading();
-                    await _localAuth.localAuth();
-                    hideLoading();
-                  })
+                  // _buildFaceIdAuth(onTap: () async {
+                  //   showLoading();
+                  //   await _localAuth.localAuth();
+                  //   hideLoading();
+                  // })
                 ],
               ),
             ),
