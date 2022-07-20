@@ -16,6 +16,7 @@ class CustomButton extends StatelessWidget {
         child: Center(
           child: Text(
             title ?? '',
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
           ),
         ),
