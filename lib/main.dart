@@ -1,14 +1,6 @@
-import 'package:application_template/android_platform/android_main.dart';
 import 'package:application_template/config_constant/theme_constant.dart';
-import 'package:application_template/initial_screen.dart';
-import 'package:application_template/ios_platform/ios_main.dart';
-import 'package:application_template/linux_platform/linux_main.dart';
-import 'package:application_template/mac_platform/mac_main.dart';
-import 'package:application_template/platform_gateway_checker.dart';
 import 'package:application_template/route_config.dart';
-import 'package:application_template/shared_widgets/unknow_platform.dart';
-import 'package:application_template/web_platform/web_main.dart';
-import 'package:application_template/window_platform/window_main.dart';
+import 'package:application_template/screen/login/login_page.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -46,41 +38,12 @@ class MyApp extends StatelessWidget {
       //theme
       themeMode: ThemeMode.light,
       theme: ThemeConstant.light,
-      home: botToastBuilder(context, MainPage()),
+      home: botToastBuilder(context, LoginPage()),
       navigatorObservers: [
         BotToastNavigatorObserver(),
       ],
       routes: RouteConfig.routeConfigs(),
       // initialRoute: '/',
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return _platformChecker();
-  }
-
-  _platformChecker() {
-    DevicePlatform device = PlatformGatewayChecker.platformChecker();
-    switch (device) {
-      case DevicePlatform.web:
-        return const WebMain();
-      case DevicePlatform.android:
-        return const AndroidMain();
-      case DevicePlatform.ios:
-        return const IOSMian();
-      case DevicePlatform.macOS:
-        return const MacMain();
-      case DevicePlatform.window:
-        return const WindowMain();
-      case DevicePlatform.linux:
-        return const LinuxMain();
-      case DevicePlatform.unknow:
-        return const UnknowPlatform();
-    }
   }
 }
