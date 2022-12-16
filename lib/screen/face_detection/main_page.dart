@@ -62,7 +62,12 @@ class MainPage extends HookConsumerWidget with Toast {
             CustomButton(
               title: 'Scan QR Code \nPlugin: mobile_scanner',
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MobileScannerScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MobileScannerScreen(),
+                  ),
+                );
               },
             ),
           ],

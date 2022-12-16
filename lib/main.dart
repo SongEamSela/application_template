@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import 'screen/face_detection/main_page.dart';
+import 'screen/todo_app/todo_home.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       //theme
       themeMode: ThemeMode.light,
       theme: ThemeConstant.light,
-      home: botToastBuilder(context, LoginPage()),
+      home: botToastBuilder(context, TodoHome()),
       navigatorObservers: [
         BotToastNavigatorObserver(),
       ],
