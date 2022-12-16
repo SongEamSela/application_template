@@ -8,6 +8,7 @@ class CustomTextFeild extends StatelessWidget {
     this.hintText,
     this.errorText,
     this.validator,
+    this.controller,
   }) : super(key: key);
 
   final double height;
@@ -15,6 +16,7 @@ class CustomTextFeild extends StatelessWidget {
   final String? hintText;
   final String? errorText;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class CustomTextFeild extends StatelessWidget {
           ),
           child: Center(
             child: TextFormField(
+              controller: controller,
               validator: validator,
               decoration: InputDecoration(
                 border: InputBorder.none,

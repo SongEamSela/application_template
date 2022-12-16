@@ -1,18 +1,22 @@
+import 'package:application_template/services/api/construct_string_endpoint.dart';
+import 'package:application_template/services/interceptor/app_network.dart';
 import 'package:application_template/services/interceptor/base_network.dart';
 import 'package:dio/dio.dart';
 
 abstract class BaseApi {
-  BaseNetwork? network;
+  AppNetwork? network;
   Response<dynamic>? response;
 
   BaseApi() {
-    network = BaseNetwork(baseUrl: 'https://reqres.in/api');
+    network = buildNetwork();
   }
 
+  AppNetwork buildNetwork();
+
   fetchAll({Map<String, dynamic>? queryParameters}) async {
-    var endPoint = '/${nameInUrl()}';
+    var endPoint = urlEndPoint.fetchAllUrl();
     response = await network?.http?.get(endPoint, queryParameters: queryParameters);
-    return response;
+    return response?.data;
   }
 
   fetchOne({required String id, Map<String, dynamic>? params}) async {
@@ -23,22 +27,27 @@ abstract class BaseApi {
 
   update({String? id, Map<String, dynamic>? body}) async {
     // TODO: add param in request url
-    var endPoint = '/${nameInUrl()}/$id';
+    var endPoint = urlEndPoint.updateUrl(id: id);
     response = await network?.http?.put(endPoint, data: body);
     return response;
   }
 
   delete({String? id, Map<String, dynamic>? params}) async {
-    var endpoint = '/${nameInUrl()}/$id';
+    var endpoint = urlEndPoint.deleteUrl(id: id);
     response = await network?.http?.delete(endpoint, data: params);
+
     return response;
   }
 
   create({required Map<String, dynamic> body, Map<String, dynamic>? options}) async {
-    var endPoint = '/${nameInUrl()}';
+    var endPoint = urlEndPoint.createUrl();
     response = await network?.http?.post(endPoint, data: body);
-    return response;
+    return response?.data;
   }
 
   String nameInUrl();
+  String path();
+  ConstructStringEndPoint get urlEndPoint {
+    return ConstructStringEndPoint(nameInUrl: nameInUrl(), path: path());
+  }
 }
